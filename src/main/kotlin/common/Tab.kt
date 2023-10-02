@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -30,10 +31,10 @@ fun Tab(
             Text(
                 modifier = Modifier
                     .clickable { onSelect(index) }
-                    .background(color = if (selectedIndex == index) Color.Gray else Color.Transparent, shape = RoundedCornerShape(5.dp))
+                    .background(color = if (selectedIndex == index) MaterialTheme.colors.primary else Color.Transparent, shape = RoundedCornerShape(5.dp))
                     .fillMaxWidth()
                     .padding(10.dp),
-                color = if (selectedIndex == index) Color.White else Color.Black,
+                color = if (selectedIndex == index) MaterialTheme.colors.onPrimary else MaterialTheme.colors.onBackground,
                 text = tabTitle,
             )
         }

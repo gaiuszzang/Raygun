@@ -35,6 +35,9 @@ compose.desktop {
             macOS {
                 iconFile.set(project.file("src/main/resources/raygun_icon.icns"))
             }
+            jvmArgs(
+                "-Dapple.awt.application.appearance=NSAppearanceNameDarkAqua"
+            )
         }
     }
 }

@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -29,17 +30,17 @@ fun HexTool(
     Column(
         modifier = modifier
     ) {
-        Text(text = "Int to Hex")
+        Text(text = "Int to Hex", color = MaterialTheme.colors.onBackground)
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(modifier = Modifier.width(70.dp), text = "Int : ")
+            Text(modifier = Modifier.width(70.dp), text = "Int : ", color = MaterialTheme.colors.onBackground)
             BasicTextField(
-                modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp)
+                modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp)
                     .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) },
                 value = numIntToHex,
-                textStyle = TextStyle.Default.copy(textAlign = TextAlign.End, color = Color.Black),
+                textStyle = TextStyle.Default.copy(textAlign = TextAlign.End, color = MaterialTheme.colors.onSurface),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                 onValueChange = { numIntToHex = it }
             )
@@ -48,27 +49,27 @@ fun HexTool(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(modifier = Modifier.width(70.dp), text = "Hex : ")
+            Text(modifier = Modifier.width(70.dp), text = "Hex : ", color = MaterialTheme.colors.onBackground)
             BasicTextField(
-                modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp)
+                modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp)
                     .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) },
                 value = "0x${Integer.toHexString(numIntToHex.toIntOrNull() ?: 0)}",
-                textStyle = TextStyle.Default.copy(textAlign = TextAlign.End, color = Color.Gray),
+                textStyle = TextStyle.Default.copy(textAlign = TextAlign.End, color = MaterialTheme.colors.onSurface.copy(alpha = 0.7f)),
                 onValueChange = {}
             )
         }
         Spacer(modifier = Modifier.height(60.dp))
-        Text(text = "Hex to Int")
+        Text(text = "Hex to Int", color = MaterialTheme.colors.onBackground)
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(modifier = Modifier.width(70.dp), text = "Hex : ")
+            Text(modifier = Modifier.width(70.dp), text = "Hex : ", color = MaterialTheme.colors.onBackground)
             BasicTextField(
-                modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp)
+                modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp)
                     .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) },
                 value = numHexToInt,
-                textStyle = TextStyle.Default.copy(textAlign = TextAlign.End, color = Color.Black),
+                textStyle = TextStyle.Default.copy(textAlign = TextAlign.End, color = MaterialTheme.colors.onSurface),
                 onValueChange = { numHexToInt = it },
             )
         }
@@ -76,12 +77,12 @@ fun HexTool(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(modifier = Modifier.width(70.dp), text = "Int : ")
+            Text(modifier = Modifier.width(70.dp), text = "Int : ", color = MaterialTheme.colors.onBackground)
             BasicTextField(
-                modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp)
+                modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp)
                     .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) },
                 value = "${numHexToInt.toLongOrNull(16) ?: "0"}",
-                textStyle = TextStyle.Default.copy(textAlign = TextAlign.End, color = Color.Gray),
+                textStyle = TextStyle.Default.copy(textAlign = TextAlign.End, color = MaterialTheme.colors.onSurface.copy(alpha = 0.7f)),
                 onValueChange = {}
             )
         }

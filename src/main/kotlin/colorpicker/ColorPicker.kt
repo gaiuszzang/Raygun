@@ -1,11 +1,13 @@
 package colorpicker
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -46,6 +48,7 @@ fun ColorPicker(
             Spacer(
                 modifier = Modifier
                     .size(200.dp)
+                    .border(1.dp, color = Color.Gray, shape = RoundedCornerShape(10.dp))
                     .background(color = colorText.toColor(), shape = RoundedCornerShape(10.dp))
             )
             Spacer(modifier = Modifier.width(5.dp))
@@ -59,13 +62,14 @@ fun ColorPicker(
                 ) {
                     Text(
                         modifier = Modifier.width(70.dp),
-                        text = "Hex : "
+                        text = "Hex : ",
+                        color = MaterialTheme.colors.onBackground
                     )
                     BasicTextField(
-                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp)
+                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp)
                             .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) },
                         value = colorText,
-                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = Color.Black),
+                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = MaterialTheme.colors.onSurface),
                         onValueChange = {
                             colorText = it
                             aText = it.getAlphaHexInt().toString()
@@ -82,17 +86,18 @@ fun ColorPicker(
                 ) {
                     Text(
                         modifier = Modifier.width(70.dp),
-                        text = "ARGB : "
+                        text = "ARGB : ",
+                        color = MaterialTheme.colors.onBackground
                     )
                     BasicTextField(
-                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp).weight(1f)
+                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp).weight(1f)
                             .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) }
                             .upDownKey { isUp ->
                                 aText = ((aText.toIntOrNull() ?: 0) + (if (isUp) 1 else -1)).coerceIn(0, 255).toString()
                                 colorText = argbStringToHexString(aText, rText, gText, bText)
                             },
                         value = aText,
-                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = Color.Black),
+                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = MaterialTheme.colors.onSurface),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         onValueChange = {
                             aText = it
@@ -100,14 +105,14 @@ fun ColorPicker(
                         },
                     )
                     BasicTextField(
-                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp).weight(1f)
+                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp).weight(1f)
                             .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) }
                             .upDownKey { isUp ->
                                 rText = ((rText.toIntOrNull() ?: 0) + (if (isUp) 1 else -1)).coerceIn(0, 255).toString()
                                 colorText = argbStringToHexString(aText, rText, gText, bText)
                             },
                         value = rText,
-                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = Color.Black),
+                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = MaterialTheme.colors.onSurface),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         onValueChange = {
                             rText = it
@@ -115,14 +120,14 @@ fun ColorPicker(
                         },
                     )
                     BasicTextField(
-                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp).weight(1f)
+                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp).weight(1f)
                             .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) }
                             .upDownKey { isUp ->
                                 gText = ((gText.toIntOrNull() ?: 0) + (if (isUp) 1 else -1)).coerceIn(0, 255).toString()
                                 colorText = argbStringToHexString(aText, rText, gText, bText)
                             },
                         value = gText,
-                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = Color.Black),
+                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = MaterialTheme.colors.onSurface),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         onValueChange = {
                             gText = it
@@ -130,14 +135,14 @@ fun ColorPicker(
                         },
                     )
                     BasicTextField(
-                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = Color.LightGray, shape = RoundedCornerShape(5.dp)).padding(5.dp).weight(1f)
+                        modifier = Modifier.fillMaxWidth().padding(5.dp).background(color = MaterialTheme.colors.surface, shape = RoundedCornerShape(5.dp)).padding(5.dp).weight(1f)
                             .tabKey { isShiftPressed -> focusManager.moveFocus(if (isShiftPressed) FocusDirection.Previous else FocusDirection.Next) }
                             .upDownKey { isUp ->
                                 bText = ((bText.toIntOrNull() ?: 0) + (if (isUp) 1 else -1)).coerceIn(0, 255).toString()
                                 colorText = argbStringToHexString(aText, rText, gText, bText)
                             },
                         value = bText,
-                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = Color.Black),
+                        textStyle = TextStyle.Default.copy(textAlign = TextAlign.Center, color = MaterialTheme.colors.onSurface),
                         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                         keyboardActions = KeyboardActions(
 
@@ -156,7 +161,7 @@ fun ColorPicker(
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = "Mouse Tracking")
+            Text(text = "Mouse Tracking", color = MaterialTheme.colors.onBackground)
             Switch(
                 checked = useMouseTracking,
                 onCheckedChange = {
